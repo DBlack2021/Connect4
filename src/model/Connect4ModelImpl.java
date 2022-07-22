@@ -20,7 +20,7 @@ public class Connect4ModelImpl implements Connect4Model {
   /**
    * Creates a new Connect4ModelImpl with a provided width and height.
    *
-   * @param width the width of the board
+   * @param width  the width of the board
    * @param height the height of the board
    * @throws IllegalArgumentException if either width or height are less than or equal to zero
    */
@@ -71,21 +71,62 @@ public class Connect4ModelImpl implements Connect4Model {
     this.toggleTurn();
   }
 
-  private boolean hasHorizontalWin() {
+
+  // COPIED FROM S/O: IT'S BAD CODE WEEEE!!
+  private boolean hasHorizontalWin(SlotState player) {
+    // horizontalCheck
+    for (int j = 0; j < getHeight() - 3; j++) {
+      for (int i = 0; i < getWidth() - 1; i++) {
+        if (this.board[i][j] == player && this.board[i][j + 1] == player && this.board[i][j + 2] == player && this.board[i][j + 3] == player) {
+          return true;
+        }
+      }
+    }
+
     return false;
   }
 
-  private boolean hasVerticalWin() {
+  private boolean hasVerticalWin(SlotState player) {
+    // verticalCheck
+    for (int i = 0; i < getWidth() - 4; i++) {
+      for (int j = 0; j < this.getHeight() - 1; j++) {
+        if (this.board[i][j] == player && this.board[i + 1][j] == player && this.board[i + 2][j] == player && this.board[i + 3][j] == player) {
+          return true;
+        }
+      }
+    }
+
     return false;
   }
 
-  private boolean hasDiagonalWin() {
+  private boolean hasDiagonalWin(SlotState player) {
+    // ascendingDiagonalCheck
+    for (int i = 3; i < this.WIDTH - 1; i++) {
+      for (int j = 0; j < this.HEIGHT - 3; j++) {
+        if (this.board[i][j] == player && this.board[i - 1][j + 1] == player && this.board[i - 2][j + 2] == player && this.board[i - 3][j + 3] == player)
+          return true;
+      }
+    }
+    // descendingDiagonalCheck
+    for (int i = 3; i < this.WIDTH - 1; i++) {
+      for (int j = 3; j < this.HEIGHT; j++) {
+        if (this.board[i][j] == player && this.board[i - 1][j - 1] == player && this.board[i - 2][j - 2] == player && this.board[i - 3][j - 3] == player)
+          return true;
+      }
+    }
+
     return false;
   }
 
   @Override
   public boolean isGameOver() {
-    return false;
+    boolean redWin =
+            this.hasDiagonalWin(SlotState.RED) || this.hasHorizontalWin(SlotState.RED) || this.hasVerticalWin(SlotState.RED);
+
+    boolean blackWin =
+            this.hasDiagonalWin(SlotState.BLACK) || this.hasHorizontalWin(SlotState.BLACK) || this.hasVerticalWin(SlotState.BLACK);
+
+    return redWin || blackWin;
   }
 
   @Override

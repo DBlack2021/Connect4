@@ -57,7 +57,12 @@ public class Connect4TextView implements Connect4View {
       result.append("\n");
     }
 
-    return result.append(ANSI_RESET).toString();
+    String numbers = "";
+    for (int i = 0; i < this.state.getWidth(); i++) {
+      numbers += i + "|";
+    }
+
+    return numbers + "\n" + result.append(ANSI_RESET);
   }
 
   @Override
