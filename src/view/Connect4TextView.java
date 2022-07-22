@@ -33,8 +33,8 @@ public class Connect4TextView implements Connect4View {
     String ANSI_RESET = "\u001B[0m";
     String ANSI_WHITE_BACKGROUND = "\u001B[47m";
 
-    String redPiece = ANSI_WHITE_BACKGROUND + ANSI_RED + "O " + ANSI_RESET + ANSI_WHITE_BACKGROUND;
-    String blackPiece = ANSI_WHITE_BACKGROUND + ANSI_BLACK + "O " + ANSI_RESET + ANSI_WHITE_BACKGROUND;
+    String redPiece = ANSI_WHITE_BACKGROUND + ANSI_RED + "◉ " + ANSI_RESET + ANSI_WHITE_BACKGROUND;
+    String blackPiece = ANSI_WHITE_BACKGROUND + ANSI_BLACK + "◉ " + ANSI_RESET + ANSI_WHITE_BACKGROUND;
     String emptyPiece =
             ANSI_WHITE_BACKGROUND + ANSI_BLACK + "_ " + ANSI_RESET + ANSI_WHITE_BACKGROUND;
 
