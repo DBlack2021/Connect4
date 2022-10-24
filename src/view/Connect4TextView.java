@@ -54,7 +54,7 @@ public class Connect4TextView implements Connect4View {
             break;
         }
       }
-      result.append("\n");
+      result.append(ANSI_RESET + "\n");
     }
 
     String numbers = "";
